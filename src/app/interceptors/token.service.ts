@@ -8,7 +8,6 @@ import { HttpInterceptor,
 
 @Injectable({ providedIn: 'root' })
 export class TokenService implements HttpInterceptor {
-
   constructor() {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
