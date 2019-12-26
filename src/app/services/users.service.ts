@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { map, catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-
   constructor(private http: HttpClient) { }
 
   getUsers() {
@@ -19,13 +17,7 @@ export class UsersService {
     }).pipe(
       map(res => {
         return res['data'];
-      }),
-      catchError(this.handlerError)
+      })
     );
-  }
-
-  handlerError(error: HttpErrorResponse) {
-    console.warn('error', error);
-    return throwError('custom error');
   }
 }
