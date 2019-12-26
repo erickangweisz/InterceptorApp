@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +18,19 @@ export class UsersService {
       'token-user': 'AAAABBBBCCCC12345678'
     });
 
-    return this.http.get('https://reqres.in/api/user', { 
+    return this.http.get('https://reqress.in/api/user', {
       params,
       headers
     }).pipe(
       map(res => {
         return res['data'];
-      })
+      }),
+      catchError(this.handlerError)
     );
+  }
+
+  handlerError(error: HttpErrorResponse) {
+    console.warn('error', error);
+    return throwError('custom error');
   }
 }
