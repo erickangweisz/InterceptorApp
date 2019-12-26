@@ -12,6 +12,9 @@ export class AppComponent {
     this.usersService.getUsers()
       .subscribe(res => {
         console.log('res', res);
+      },
+      (err) => {
+        console.log('Error in AppComponent', err);
       });
   }
 }
