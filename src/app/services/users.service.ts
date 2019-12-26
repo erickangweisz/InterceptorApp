@@ -14,13 +14,13 @@ export class UsersService {
     let params = new HttpParams().append('page', '2');
     params = params.append('name', 'Jonatan Arrocha');
 
-    const headers = new HttpHeaders({
+    /*const headers = new HttpHeaders({
       'token-user': 'AAAABBBBCCCC12345678'
-    });
+    });*/
 
-    return this.http.get('https://reqress.in/api/user', {
+    return this.http.get('https://reqres.in/api/user', {
       params,
-      headers
+      //headers
     }).pipe(
       map(res => {
         return res['data'];
