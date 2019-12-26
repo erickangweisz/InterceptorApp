@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,16 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   getUsers() {
-    return this.http.get('https://reqres.in/api/user');
+    let params = new HttpParams().append('page', '2');
+    params = params.append('name', 'Jonatan Arrocha');
+
+    const headers = new HttpHeaders({
+      'token-user': 'AAAABBBBCCCC12345678'
+    });
+
+    return this.http.get('https://reqres.in/api/user', { 
+      params,
+      headers
+    });
   }
 }
