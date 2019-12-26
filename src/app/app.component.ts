@@ -7,7 +7,6 @@ import { UsersService } from './services/users.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
   constructor(private usersService: UsersService) {
     this.usersService.getUsers()
       .subscribe(res => {
